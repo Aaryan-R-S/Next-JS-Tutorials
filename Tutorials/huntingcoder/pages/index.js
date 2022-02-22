@@ -3,11 +3,19 @@ import Script from 'next/script'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
+import Dummy from '../components/dummy'
 
 export default function Home() {
   return (
     <div className={styles.container}>
-
+      {/* <Dummy/> */}
+      {/* <style jsx>
+            {`
+                .yo{
+                    color: red;
+                }
+            `}
+      </style> */}
       {/* Head tag of nextjs/head to inject code into head tag of HTML page */}
       <Head>
         <title>Hunting Coder</title>
@@ -33,7 +41,9 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Hunting Coder
+          {/* <span className="yo dummy"> */}
+            Hunting Coder
+          {/* </span> */}
         </h1>
 
         <p className={styles.description}>
