@@ -15,5 +15,10 @@
   
   .blogItemh3{
       cursor: pointer;
+      font-size: 2rem;
+      padding: 0;
+  }
 
-    }
+  .blogItemp{
+    max-width: 45vw;
+  }
