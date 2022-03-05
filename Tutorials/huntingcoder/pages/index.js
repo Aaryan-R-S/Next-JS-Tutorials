@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import Script from 'next/script'
-import Image from 'next/image'
-import Link from 'next/link'
+// import Script from 'next/script'
+// import Image from 'next/image'
+// import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 // -> One way to import CSS file (available globally in all components)
 // import '../styles/globals.css'
@@ -39,7 +39,8 @@ export default function Home() {
           Hunting Coder
         </h1>
         <div className={styles.imgWrap}>
-          <Image src="/home.jpg" className={styles.myImg} width={436} height={290}/>
+          {/* <Image src="/home.jpg" className={styles.myImg} width={436} height={290}/> */}
+          <img className={styles.myImg} src="/home.jpg" width={436} height={290} alt="hunting coder"/>
         </div>
 
         <p className={styles.description}>

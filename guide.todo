@@ -1,3 +1,4 @@
 ☐ npm install --global yarn
 ☐ yarn create next-app {your app name without spaces and capital letters}
 ☐ yarn run dev OR yarn dev
+☐ yarn export
