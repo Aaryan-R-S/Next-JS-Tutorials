@@ -1,0 +1,11 @@
+.container {
+    max-width: 50 vw;
+    margin: auto 40vw;
+    padding: 0 2rem;
+}
+.mb3{
+    margin-bottom: 21px;
+}
+.formLabel{
+    margin: 0px 12px;
+}
