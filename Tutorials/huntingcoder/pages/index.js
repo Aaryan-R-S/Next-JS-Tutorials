@@ -11,7 +11,7 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
   return (
     <div className={styles.container}>
-      <style jsx>
+      {/* <style jsx>
         {`
           h2{
             font-size: 38px;
@@ -20,7 +20,7 @@ export default function Home() {
             font-size: 27px;
           }
         `}
-      </style>
+      </style> */}
       {/* Head tag of nextjs/head to inject code into head tag of HTML page */}
       <Head>
         <title>Hunting Coder</title>
@@ -35,31 +35,29 @@ export default function Home() {
       {/* To run or inject custom javascript in the application [Inbuilt next js feature to specify when to run the script- "beforeInteractive", "afterInteractive", or "lazyOnload"] */}
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Hunting Coder
-        </h1>
         <div className={styles.imgWrap}>
           {/* <Image src="/home.jpg" className={styles.myImg} width={436} height={290}/> */}
           <img className={styles.myImg} src="/home.jpg" width={436} height={290} alt="hunting coder"/>
         </div>
-
-        <p className={styles.description}>
-          A blog for hunting coders by a hunting coder!
-        </p>
-        
+        <h1 className={styles.title}>
+          &lt;Hunting Coder/&gt;
+        </h1>
         <div className="blogs">
-          <h2>Latest Blogs</h2>
+          <h2 className={styles.h2}>Latest Blogs</h2>
           <div className="blogItem">
-            <h3>How to learn JavaScript in 2022?</h3>
-            <p>JavaScritp is the language used to design logic for the web</p>
+            <h3 className={styles.h3}>How to learn JavaScript in 2022?</h3>
+            <p>JavaScritp is the language used to design logic for the web Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            <button className={styles.btn}>Read more</button>
           </div>
           <div className="blogItem">
-            <h3>How to learn JavaScript in 2022?</h3>
-            <p>JavaScritp is the language used to design logic for the web</p>
+            <h3 className={styles.h3}>How to learn JavaScript in 2022?</h3>
+            <p>JavaScritp is the language used to design logic for the web Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            <button className={styles.btn}>Read more</button>
           </div>
           <div className="blogItem">
-            <h3>How to learn JavaScript in 2022?</h3>
-            <p>JavaScritp is the language used to design logic for the web</p>
+            <h3 className={styles.h3}>How to learn JavaScript in 2022?</h3>
+            <p>JavaScritp is the language used to design logic for the web Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            <button className={styles.btn}>Read more</button>
           </div>
         </div>
       </main>

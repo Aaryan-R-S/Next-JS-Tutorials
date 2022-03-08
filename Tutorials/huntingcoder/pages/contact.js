@@ -48,25 +48,26 @@ export default function Contact() {
 
   return (
     <div className={styles.container}>
-      <h1>Contact us</h1>
+      <h1 className={styles.h1}>Contact us</h1>
       <form onSubmit={handleSubmit}>
         <div className={styles.mb3}>
           <label htmlFor="name" className={styles.formLabel}>Name</label>
-          <input type="text" value={name} onChange={handleChange} name="name" className="form-control" id="name" aria-describedby="nameHelp"/>
+          <input className={styles.input} type="text" value={name} onChange={handleChange} name="name" id="name" aria-describedby="nameHelp" required={true}/>
         </div>
         <div className={styles.mb3}>
           <label htmlFor="email" className={styles.formLabel}>Email Address</label>
-          <input type="email" value={email} onChange={handleChange} name="email" className="form-control" id="email" aria-describedby="emailHelp"/>
+          <input className={styles.input} type="email" value={email} onChange={handleChange} name="email" id="email" aria-describedby="emailHelp" required={true}/>
+         We will never share your email with anyone else!
         </div>
         <div className={styles.mb3}>
           <label htmlFor="phone" className={styles.formLabel}>Phone</label>
-          <input type="phone" value={phone} onChange={handleChange} className="form-control" name="phone" id="phone"/>
+          <input className={styles.input} type="phone" value={phone} onChange={handleChange} name="phone" id="phone" required={true}/>
         </div>
         <div className={styles.mb3}>
           <label htmlFor="desc" className={styles.formLabel}>Your concern</label>
-          <textarea className="form-control" value={desc} onChange={handleChange} name="desc" id="desc" placeholder='Write your text here' aria-describedby="descHelp"/>
+          <textarea className={styles.input} value={desc} onChange={handleChange} name="desc" id="desc" required={true}/>
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className={styles.btn}>Submit</button>
       </form>
     </div>
   )
