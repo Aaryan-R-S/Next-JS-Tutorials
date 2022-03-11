@@ -5,6 +5,7 @@ export default async function handler(req, res) {
   // console.log(res);  // It won'tt be printed on the console but on the terminal as its a backend part
   // http://localhost:3000/api/blogs
   let data = await fs.promises.readdir('blogdata')
+  data = data.slice(0, parseInt(req.query.count))
   let allBlogs = []
   let myFile;
   for (let index = 0; index < data.length; index++) {

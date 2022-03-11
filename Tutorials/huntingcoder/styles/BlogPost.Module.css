@@ -1,18 +1,24 @@
 .container {
-    padding: 0 5rem;
+  padding: 0 5rem;
+}
+
+.main {
+  min-height: 100vh;
+  /* padding: 4rem 0; */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 3rem;
+}
+
+.blogItemh3 {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 750px) {
+  .container {
+    padding: 0 0;
   }
-  
-  .main {
-    min-height: 100vh;
-    /* padding: 4rem 0; */
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 3rem;
-  }
-  
-  .blogItemh3{
-      cursor: pointer;
-    }
+}

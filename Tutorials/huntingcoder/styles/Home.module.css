@@ -66,6 +66,16 @@
     Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
+.blogs{
+  margin: 0vw 20vw;
+}
+
+@media screen and (max-width: 700px){
+  .blogs{
+    margin: 0vw 5vw;
+  }
+}
+
 .grid {
   display: flex;
   align-items: center;
@@ -116,36 +126,42 @@
   }
 }
 
-.mainnav ul{
+.mainnav ul {
   display: flex;
   justify-content: center;
   margin-top: 50px;
 }
 
-.mainnav ul li{
+.mainnav ul li {
   margin: 0px 24px;
   list-style: none;
   font-weight: bold;
 }
 
-.myImg{
+@media only screen and (max-width: 450px) {
+  .mainnav ul li {
+    margin: 0px 12px;
+  }
+}
+
+.myImg {
   width: 300px;
   border-radius: 150px;
 }
 
-.imgWrap{
+.imgWrap {
   padding: 15px 0px;
 }
 
-.h2{
+.h2 {
   font-size: 2.5rem;
 }
 
-.h3{
+.h3 {
   font-size: 1.5rem;
 }
 
-.btn{
+.btn {
   color: white;
   background-color: black;
   padding: 7px 10px;

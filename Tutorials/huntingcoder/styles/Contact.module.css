@@ -1,32 +1,45 @@
 .container {
     max-width: 70vw;
-    margin: auto 32vw;
+    margin: auto 20vw;
     padding: 0 2rem;
 }
-.h1{
+
+.h1 {
     margin-top: 3rem;
     margin-bottom: 1rem;
     text-align: center;
 }
-.mb3{
+
+.mb3 {
     margin-bottom: 21px;
     display: flex;
     flex-direction: column;
 }
-.formLabel{
+
+.formLabel {
     margin: 2px 0px;
     font-weight: 500;
 }
-.input{
+
+.input {
     font-size: 18px;
     padding: 3px;
     border-radius: 4px;
-    border:1px sloid black;
+    border: 1px sloid black;
 }
-.btn{
+
+.btn {
     color: white;
     background-color: black;
     padding: 7px 10px;
     cursor: pointer;
     border-radius: 6px;
-  }
+}
+
+
+@media only screen and (max-width: 750px) {
+    .container {
+        margin: auto 10vw;
+        max-width: 88vw;
+    }
+}
