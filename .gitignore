@@ -1,4 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+Tutorials/huntingcoder/blogdata
+Tutorials/huntingcoder/contactdata
 
 # dependencies
 node_modules
