@@ -1,6 +1,4 @@
 import Head from 'next/head'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import styles from '../styles/home.module.css'
 
 export default function Home() {
@@ -11,7 +9,6 @@ export default function Home() {
         <meta name="description" content="CodesWear.com - Wear the code!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    <Navbar/>
     <div>
       <img src="/home.jpg" alt="Home Image" className={styles.myImg}/>
     </div>
@@ -94,7 +91,6 @@ export default function Home() {
         </div>
       </div>
     </section>
-    <Footer/>
     </div>
   )
 }
