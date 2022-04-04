@@ -66,7 +66,7 @@ const Checkout = ({cart, clearCart, addToCart, removeFromCart, subTotal}) => {
           {Object.keys(cart).length==0 && <div className='my-4 font-normal text-lg'>Your cart is empty!</div>}
          {Object.keys(cart).map((k)=>{return <li key={k}>
             <div className="item flex my-2">
-              <div className='font-semibold'>{cart[k].name}</div>
+              <div className='font-semibold'>{cart[k].name} ({cart[k].size}/{cart[k].variant})</div>
               <div className='w-1/3 flex items-center justify-center'><AiFillMinusCircle onClick={()=>{removeFromCart(k, 1)}} className="text-green-600 mx-1 text-2xl"/><span className="mx-1">{cart[k].quantity}</span><AiFillPlusCircle onClick={()=>{addToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}} className="text-green-600 mx-1 text-2xl"/></div>
             </div>
           </li>})}
