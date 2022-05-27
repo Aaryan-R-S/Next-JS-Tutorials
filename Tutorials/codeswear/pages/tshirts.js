@@ -9,8 +9,9 @@ const Tshirts = ({products}) => {
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap -m-4 justify-center">
+          {Object.keys(products).length==0 && <p>Sorry, all the tshirts are out of stock. New stock coming soon. Stay tuned!</p>}
             {Object.keys(products).map((item)=>{
-              return <Link key={item._id} passHref={true} href={`/product/${products[item].slug}`}>
+              return <Link key={products[item]._id} passHref={true} href={`/product/${products[item].slug}`}>
                 <div className="lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-8">
                   <a className="block relative rounded overflow-hidden">
                     <img alt="ecommerce" className="m-auto block h-[30vh] md:h-[36vh]" src={products[item].img}/>

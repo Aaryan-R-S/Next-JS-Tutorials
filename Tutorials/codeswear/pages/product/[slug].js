@@ -2,6 +2,8 @@ import { useRouter } from 'next/router'
 import {useState} from 'react';
 import Product from '../../models/Product';
 import mongoose from 'mongoose';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Post = ({buyNow, addToCart, product, variants}) => {
   const router = useRouter()
@@ -9,13 +11,31 @@ const Post = ({buyNow, addToCart, product, variants}) => {
   const [pin, setPin] = useState(null)
   const [service, setService] = useState(null)
   const checkServiceability = async ()=>{
-      let pins = await fetch('http://localhost:3000/api/pincode')
+      let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`)
       let pinJson = await pins.json();
       if(pinJson.includes(parseInt(pin))){
         setService(true)
-      }
-      else{
-        setService(false)
+        toast.success('Congrats! This pincode is serviceable.', {
+          position: "bottom-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+        }
+        else{
+          setService(false)
+          toast.error('Sorry, this pincode is not serviceable!', {
+            position: "bottom-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
       }
   }
 
@@ -27,13 +47,24 @@ const Post = ({buyNow, addToCart, product, variants}) => {
   const [size, setSize] = useState(product.size)
 
   const refreshVariants = (newColor, newSize)=>{
-    let url = `http://localhost:3000/product/${variants[newColor][newSize]['slug']}`
+    let url = `${process.env.NEXT_PUBLIC_HOST}/product/${variants[newColor][newSize]['slug']}`
     window.location = url
   }
 
 
   return <>
   <section className="text-gray-600 body-font overflow-hidden">
+  <ToastContainer
+    position="bottom-center"
+    autoClose={13}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    />
     <div className="container px-5 py-24 mx-auto">
       <div className="lg:w-4/5 mx-auto flex flex-wrap">
         <img alt="ecommerce" className="p-20 md:p-10 lg:w-1/2 w-full h-auto object-cover object-center rounded" src={product.img}/>
@@ -107,7 +138,7 @@ const Post = ({buyNow, addToCart, product, variants}) => {
             </div>
           </div>
           <div className="flex">
-            <span className="title-font font-medium md:text-2xl text-lg pt-1 text-gray-900">₹499.00</span>
+            <span className="title-font font-medium md:text-2xl text-lg pt-1 text-gray-900">₹{product.price}</span>
             <button onClick={()=>{addToCart(slug, 1, product.price, product.title, product.size, product.color)}} className="flex md:ml-5 ml-2 text-white bg-green-500 border-0 py-2 md:px-6 px-2 md:text-lg text-sm focus:outline-none hover:bg-green-600 rounded">Add to Cart</button>
             <button onClick={()=>{buyNow(slug, 1, product.price, product.title, product.size, product.color)}} className="flex md:ml-5 ml-2 text-white bg-green-500 border-0 py-2 md:px-6 px-2 md:text-lg text-sm focus:outline-none hover:bg-green-600 rounded">Buy Now</button>
             {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
@@ -138,12 +169,14 @@ export async function getServerSideProps(context){
     await mongoose.connect(process.env.MONGO_URI)
   }
   let product = await Product.findOne({slug: context.query.slug})
-  // if(!product){
-  //   return {
-  //     props: {product: pro}
-  //   }
-  // }
-  let variants = await Product.find({title: product.title})
+  // console.log("ok");
+  // console.log(product);
+  if(!product){
+    return {
+      props: {product:{color:null, size:null}, variants:{}}
+    }
+  }
+  let variants = await Product.find({title: product.title, category: product.category})
   // console.log(product);
   let colorSizeSlug = {}  // {red: {XL: {slug: 'wear-the-code-t3}}}
   for(let item of variants){

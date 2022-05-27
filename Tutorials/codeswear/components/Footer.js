@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
           <Link href={'/'}>
             <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-              <img src="/binary-code.png" alt="facvicon" className={styles.myImg} />
+              <img src="http://localhost:3000/binary-code.png" alt="facvicon" className={styles.myImg} />
             </a>
           </Link>
           <p className="mt-2 text-sm text-gray-500">Wear the <strong>&lt;code/&gt;</strong></p>
