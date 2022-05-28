@@ -2,10 +2,53 @@ import React from 'react'
 import {AiFillMinusCircle, AiFillPlusCircle} from 'react-icons/ai'
 import {BsFillBagCheckFill} from 'react-icons/bs'
 import Link from 'next/link'
+import Head from 'next/head'
+import Script from 'next/script'
 
 const Checkout = ({cart, clearCart, addToCart, removeFromCart, subTotal}) => {
+  const initiatePayment = async()=>{
+    let oid = Math.floor(Math.random()*Date.now())
+    // Get a transaction token
+    const data = {cart, subTotal, oid, email:"email"};
+    let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    let txnRes = await a.json()
+    let txnToken = txnRes.txnToken
+    var config = {
+      "root": "",
+      "flow": "DEFAULT",
+      "data": {
+      "orderId": oid, /* update order id */
+      "token": txnToken, /* update token value */
+      "tokenType": "TXN_TOKEN",
+      "amount": subTotal /* update amount */
+      },
+      "handler": {
+        "notifyMerchant": function(eventName,data){
+          console.log("notifyMerchant handler function called");
+          console.log("eventName => ",eventName);
+          console.log("data => ",data);
+        } 
+      }
+    };
+
+    window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
+        // after successfully updating configuration, invoke JS Checkout
+        window.Paytm.CheckoutJS.invoke();
+    }).catch(function onError(error){
+        console.log("error => ",error);
+    });
+
+  }
   return (
     <div className='container m-auto p-5 mt-10'>
+      <Head><meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"/></Head>
+      <Script type="application/javascript" crossorigin="anonymous" src={`${process.env.NEXT_PUBLIC_PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_PAYTM_MID}.js`}> </Script>
       <h1 className='font-bold text-3xl text-center mb-5'>Checkout</h1>
       <h2 className='font-semibold text-xl mb-2'>1. Delivery Details</h2>
 
@@ -72,7 +115,7 @@ const Checkout = ({cart, clearCart, addToCart, removeFromCart, subTotal}) => {
           </li>})}
         </ol>
         <div className="total font-bold mx-3">Subtotal: ₹{subTotal}</div>
-        <Link href={'/order'}><a><button className="flex mx-2 mt-8 text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded md:text-lg text-base"><BsFillBagCheckFill className="mt-1 mr-2"/> Pay ₹{subTotal}</button></a></Link>
+        <Link href={'/checkout'}><a><button onClick={initiatePayment} className="flex mx-2 mt-8 text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded md:text-lg text-base"><BsFillBagCheckFill className="mt-1 mr-2"/> Pay ₹{subTotal}</button></a></Link>
       </div>
     </div>
   )
